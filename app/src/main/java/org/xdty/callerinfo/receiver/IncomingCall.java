@@ -172,6 +172,10 @@ public class IncomingCall extends BroadcastReceiver {
             if (incomingNumber.startsWith("86")) {
                 incomingNumber = incomingNumber.replaceFirst("^86", "");
             }
+            
+            if (incomingNumber.startsWith("125831")) {
+                incomingNumber = incomingNumber.replaceFirst("^125831", "");
+            }
 
             if (!isShowing) {
                 mIgnoreContact =
