@@ -19,28 +19,21 @@ before_install:
    - openssl aes-256-cbc -K $encrypted_75846693d905_key -iv $encrypted_75846693d905_iv -in release.jks.enc -out release.jks -d
 
 script:
-  - ./gradlew clean assembleDebug
-  - cp app/build/outputs/apk/CallerInfo-v$VERSION_NAME-debug.apk $HOME
-  - cp plugin/build/outputs/apk/CallerInfo-plugin-v$PLUGIN_VERSION_NAME-debug.apk $HOME
   - ./gradlew clean assembleRelease
   - cp app/build/outputs/apk/CallerInfo-v$VERSION_NAME-release.apk $HOME
   - cp plugin/build/outputs/apk/CallerInfo-plugin-v$PLUGIN_VERSION_NAME-release.apk $HOME
-  - md5sum "$HOME/CallerInfo-v$VERSION_NAME-debug.apk"
   - md5sum "$HOME/CallerInfo-v$VERSION_NAME-release.apk"
-  - md5sum "$HOME/CallerInfo-plugin-v$PLUGIN_VERSION_NAME-debug.apk"
   - md5sum "$HOME/CallerInfo-plugin-v$PLUGIN_VERSION_NAME-release.apk"
-  - sha1sum "$HOME/CallerInfo-v$VERSION_NAME-debug.apk"
   - sha1sum "$HOME/CallerInfo-v$VERSION_NAME-release.apk"
-  - sha1sum "$HOME/CallerInfo-plugin-v$PLUGIN_VERSION_NAME-debug.apk"
   - sha1sum "$HOME/CallerInfo-plugin-v$PLUGIN_VERSION_NAME-release.apk"
 
 deploy:
   provider: releases
   api-key: $GITHUB_TOKEN
   file:
-    - "$HOME/CallerInfo-v$VERSION_NAME-debug.apk"
+    
     - "$HOME/CallerInfo-v$VERSION_NAME-release.apk"
-    - "$HOME/CallerInfo-plugin-v$PLUGIN_VERSION_NAME-debug.apk"
+    
     - "$HOME/CallerInfo-plugin-v$PLUGIN_VERSION_NAME-release.apk"
   skip_cleanup: true
   on:
