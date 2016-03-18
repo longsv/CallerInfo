@@ -16,7 +16,7 @@ notifications:
 before_install:
    - touch local.properties
    - source gradle.properties
-   - openssl aes-256-cbc -K $encrypted_75846693d905_key -iv $encrypted_75846693d905_iv -in release.jks.enc -out release.jks -d
+   - openssl aes-256-cbc -K 42AB7FCE7BFEEE03E16719044916CBD475F6D000F230D213FF0F4775EF8D46F5 -iv D5C21AC249B26A1FBA376E8CFCDC4E1A -in release.jks.enc -out release.jks -d
 
 script:
   - ./gradlew clean assembleRelease
